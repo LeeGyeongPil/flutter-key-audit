@@ -1,0 +1,24 @@
+name: flutter_key_audit
+description: Offline scanner that finds billable AI provider API keys in Flutter build outputs (APK, AAB, IPA, macOS app, web build, source) and explains how to move the call behind a backend.
+version: 0.1.0
+repository: https://github.com/LeeGyeongPil/flutter-key-audit
+issue_tracker: https://github.com/LeeGyeongPil/flutter-key-audit/issues
+topics:
+  - security
+  - flutter
+  - cli
+  - llm
+  - secrets
+
+environment:
+  sdk: ^3.8.0
+
+executables:
+  flutter-key-audit: flutter_key_audit
+
+dependencies:
+  archive: ^4.6.0
+  args: ^2.7.0
+
+dev_dependencies:
+  test: ">=1.26.0 <1.31.1"
