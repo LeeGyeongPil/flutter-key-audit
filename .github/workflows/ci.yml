@@ -1,0 +1,23 @@
+# Runs without any API key or network service: all fixtures are generated.
+name: ci
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 1" # every Monday: catch SDK or dependency changes
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: dart analyze --fatal-infos
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: dart test
+      - run: mkdir -p build
+      - run: dart compile exe bin/flutter_key_audit.dart -o build/flutter-key-audit
+      - run: build/flutter-key-audit --version
+      - name: Practice mock demo
+        run: build/flutter-key-audit demo --lang en --out "$RUNNER_TEMP/fka-demo"
