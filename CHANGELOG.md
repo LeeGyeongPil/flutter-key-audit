@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-14
+
+### Changed
+- README install section lists `dart pub global activate flutter_key_audit` first;
+  building from source is the second option. The CI example gains an install step.
+
 ## [0.1.1] - 2026-11-14
 
 ### Fixed
@@ -35,6 +41,7 @@ All notable changes to this project are documented here. The format follows
 - `rules` command and `demo` command (`demo --aot` compiles a real AOT snapshot).
 - Fix guides in English and Korean, `tool/compare_scanners.sh`.
 
-[Unreleased]: https://github.com/LeeGyeongPil/flutter-key-audit/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/LeeGyeongPil/flutter-key-audit/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/LeeGyeongPil/flutter-key-audit/releases/tag/v0.1.2
 [0.1.1]: https://github.com/LeeGyeongPil/flutter-key-audit/releases/tag/v0.1.1
 [0.1.0]: https://github.com/LeeGyeongPil/flutter-key-audit/releases/tag/v0.1.0

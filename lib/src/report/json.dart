@@ -5,7 +5,7 @@ import '../options.dart';
 import 'table.dart';
 
 /// Tool version, kept in sync with pubspec.yaml (a test checks this).
-const toolVersion = '0.1.1';
+const toolVersion = '0.1.2';
 
 /// JSON report. Keys and values are English and identical in every language.
 /// The raw key never appears: only [Finding.redacted].

@@ -17,6 +17,21 @@ Flutter 빌드가 사용자에게 그대로 실어 보내는 과금형 AI API �
 
 [Dart SDK](https://dart.dev/get-dart) 3.8 이상이 필요합니다(Flutter 에 들어 있습니다). 최소 리눅스 이미지에서는 `git` 과 `curl` 도 필요합니다.
 
+### pub.dev 에서
+
+```bash
+dart pub global activate flutter_key_audit
+flutter-key-audit --version
+```
+
+```text
+flutter-key-audit 0.1.2
+```
+
+실행 파일은 pub 캐시의 `bin` 폴더(macOS·Linux 는 `$HOME/.pub-cache/bin`, Windows 는 `%LOCALAPPDATA%\Pub\Cache\bin`)에 생기므로 이 폴더가 `PATH` 에 있어야 합니다. activate 로 설치한 도구는 JIT 스냅샷으로 실행되어 컴파일한 실행 파일보다 시작이 조금 느립니다. [dart pub global](https://dart.dev/tools/dart-pub#global-activate) 참고.
+
+### 소스에서 빌드
+
 ```bash
 git clone https://github.com/LeeGyeongPil/flutter-key-audit
 cd flutter-key-audit
@@ -24,10 +39,6 @@ dart pub get
 mkdir -p build
 dart compile exe bin/flutter_key_audit.dart -o build/flutter-key-audit
 build/flutter-key-audit --version
-```
-
-```text
-flutter-key-audit 0.1.1
 ```
 
 `build/flutter-key-audit` 를 `PATH` 에 두거나 경로로 부르세요. 아래 예시는 줄여서 `flutter-key-audit` 로 씁니다.
@@ -194,6 +205,9 @@ JSON(`--format json`)은 `schema`, `tool`, `findings[]`(`rule`, `severity`, `con
 ### 6. CI
 
 ```yaml
+- uses: dart-lang/setup-dart@v1   # Flutter 액션이 이미 Dart 를 제공하면 생략 가능
+- run: dart pub global activate flutter_key_audit
+- run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 - run: flutter build web --release
 - run: flutter-key-audit scan build/web --format sarif --output fka.sarif --fail-on billing
 - uses: github/codeql-action/upload-sarif@v4
@@ -288,7 +302,8 @@ flowchart LR
 
 ## 로드맵
 
-- **0.1.1(이번 릴리스)**: 패치; 개발 점검 명령(`dart analyze`, `dart format`)을 소스 폴더로 한정.
+- **0.1.2(이번 릴리스)**: 패치; README 설치를 `dart pub global activate` 로 안내, CI 예시에 설치 단계.
+- **0.1.1**: 패치; 개발 점검 명령(`dart analyze`, `dart format`)을 소스 폴더로 한정.
 - **0.1.0**: 위에서 설명한 모든 기능.
 - **다음**: 실행 가능한 `example/` 프록시 서버와 전후 비교용 Flutter 예제 앱, 사용자 규칙(`--rules`), 알려진 항목용 기준선 파일, GitHub Action 래퍼.
 - **그다음**: 중첩 압축, UTF-16 문자열, 키 형식이 문서화된 제공자 추가, `--dart-define-from-file` 점검.

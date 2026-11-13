@@ -17,6 +17,21 @@ Find billable AI provider API keys (OpenAI, Anthropic, Gemini, Groq and more) th
 
 Requires the [Dart SDK](https://dart.dev/get-dart) 3.8 or newer (it comes with Flutter). On a minimal Linux image you also need `git` and `curl`.
 
+### From pub.dev
+
+```bash
+dart pub global activate flutter_key_audit
+flutter-key-audit --version
+```
+
+```text
+flutter-key-audit 0.1.2
+```
+
+The executable lives in the pub cache `bin` folder (`$HOME/.pub-cache/bin` on macOS and Linux, `%LOCALAPPDATA%\Pub\Cache\bin` on Windows), which must be on your `PATH`. An activated tool runs from a JIT snapshot, so it starts a little slower than a compiled executable. See [dart pub global](https://dart.dev/tools/dart-pub#global-activate).
+
+### From source
+
 ```bash
 git clone https://github.com/LeeGyeongPil/flutter-key-audit
 cd flutter-key-audit
@@ -24,10 +39,6 @@ dart pub get
 mkdir -p build
 dart compile exe bin/flutter_key_audit.dart -o build/flutter-key-audit
 build/flutter-key-audit --version
-```
-
-```text
-flutter-key-audit 0.1.1
 ```
 
 Put `build/flutter-key-audit` on your `PATH`, or call it by path. The examples below write `flutter-key-audit` for short.
@@ -194,6 +205,9 @@ JSON (`--format json`) has `schema`, `tool`, `findings[]` (`rule`, `severity`, `
 ### 6. CI
 
 ```yaml
+- uses: dart-lang/setup-dart@v1   # skip if a Flutter action already provides Dart
+- run: dart pub global activate flutter_key_audit
+- run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 - run: flutter build web --release
 - run: flutter-key-audit scan build/web --format sarif --output fka.sarif --fail-on billing
 - uses: github/codeql-action/upload-sarif@v4
@@ -288,7 +302,8 @@ Reproduce with `tool/compare_scanners.sh` (needs the tools installed; it skips a
 
 ## Roadmap
 
-- **0.1.1 (this release)**: patch; development checks (`dart analyze`, `dart format`) are scoped to the source folders.
+- **0.1.2 (this release)**: patch; README install via `dart pub global activate`, CI install step.
+- **0.1.1**: patch; development checks (`dart analyze`, `dart format`) are scoped to the source folders.
 - **0.1.0**: everything above.
 - **Next**: a runnable `example/` proxy server and a before/after Flutter example app, custom rules (`--rules`), a baseline file for known findings, a GitHub Action wrapper.
 - **Later**: nested archives, UTF-16 strings, more providers whose key format is documented, a check of `--dart-define-from-file`.
