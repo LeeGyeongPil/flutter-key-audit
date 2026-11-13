@@ -27,7 +27,7 @@ build/flutter-key-audit --version
 ```
 
 ```text
-flutter-key-audit 0.1.0
+flutter-key-audit 0.1.1
 ```
 
 `build/flutter-key-audit` 를 `PATH` 에 두거나 경로로 부르세요. 아래 예시는 줄여서 `flutter-key-audit` 로 씁니다.
@@ -288,7 +288,8 @@ flowchart LR
 
 ## 로드맵
 
-- **0.1.0(이번 릴리스)**: 위에서 설명한 모든 기능.
+- **0.1.1(이번 릴리스)**: 패치; 개발 점검 명령(`dart analyze`, `dart format`)을 소스 폴더로 한정.
+- **0.1.0**: 위에서 설명한 모든 기능.
 - **다음**: 실행 가능한 `example/` 프록시 서버와 전후 비교용 Flutter 예제 앱, 사용자 규칙(`--rules`), 알려진 항목용 기준선 파일, GitHub Action 래퍼.
 - **그다음**: 중첩 압축, UTF-16 문자열, 키 형식이 문서화된 제공자 추가, `--dart-define-from-file` 점검.
 
@@ -318,7 +319,7 @@ flowchart LR
 dart pub get
 dart test
 dart analyze --fatal-infos
-dart format --output=none --set-exit-if-changed .
+dart format --output=none --set-exit-if-changed lib bin test tool
 ```
 
 모든 테스트 픽스처는 실행 중에 무작위 가짜 키로 생성하며 실제 키나 네트워크는 쓰지 않습니다. 버그·제안은 이슈로 남겨 주세요. 변경 기록은 [CHANGELOG.md](CHANGELOG.md).

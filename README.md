@@ -27,7 +27,7 @@ build/flutter-key-audit --version
 ```
 
 ```text
-flutter-key-audit 0.1.0
+flutter-key-audit 0.1.1
 ```
 
 Put `build/flutter-key-audit` on your `PATH`, or call it by path. The examples below write `flutter-key-audit` for short.
@@ -288,7 +288,8 @@ Reproduce with `tool/compare_scanners.sh` (needs the tools installed; it skips a
 
 ## Roadmap
 
-- **0.1.0 (this release)**: everything above.
+- **0.1.1 (this release)**: patch; development checks (`dart analyze`, `dart format`) are scoped to the source folders.
+- **0.1.0**: everything above.
 - **Next**: a runnable `example/` proxy server and a before/after Flutter example app, custom rules (`--rules`), a baseline file for known findings, a GitHub Action wrapper.
 - **Later**: nested archives, UTF-16 strings, more providers whose key format is documented, a check of `--dart-define-from-file`.
 
@@ -318,7 +319,7 @@ Reproduce with `tool/compare_scanners.sh` (needs the tools installed; it skips a
 dart pub get
 dart test
 dart analyze --fatal-infos
-dart format --output=none --set-exit-if-changed .
+dart format --output=none --set-exit-if-changed lib bin test tool
 ```
 
 All test fixtures are generated at run time with random fake keys; no real key or network is used. Bugs and ideas are welcome as issues. Changes are in [CHANGELOG.md](CHANGELOG.md).

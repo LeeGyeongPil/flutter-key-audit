@@ -6,6 +6,13 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-14
+
+### Fixed
+- Development checks (`dart analyze`, `dart format`) no longer pick up demo
+  output folders (`fka-demo`, `fka-aot`, `build`); the format command is now
+  limited to `lib bin test tool`.
+
 ## [0.1.0] - 2026-11-13
 
 ### Added
@@ -28,5 +35,6 @@ All notable changes to this project are documented here. The format follows
 - `rules` command and `demo` command (`demo --aot` compiles a real AOT snapshot).
 - Fix guides in English and Korean, `tool/compare_scanners.sh`.
 
-[Unreleased]: https://github.com/LeeGyeongPil/flutter-key-audit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/LeeGyeongPil/flutter-key-audit/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/LeeGyeongPil/flutter-key-audit/releases/tag/v0.1.1
 [0.1.0]: https://github.com/LeeGyeongPil/flutter-key-audit/releases/tag/v0.1.0
